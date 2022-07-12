@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppComponent } from './app.component';
-import { ImagesSearchComponent } from './images-search/images-search.component';
-import { HttpClientModule } from '@angular/common/http';
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
+import { AppRoutingModule } from '../app-routing.module';
+import { AppComponent } from '../app.component';
+import { ImagesSearchComponent } from '../images-search/images-search.component';
 
 @NgModule({
   declarations: [
@@ -13,8 +12,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
-    InfiniteScrollModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
