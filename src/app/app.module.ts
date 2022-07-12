@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { ImagesSearchComponent } from './images-search/images-search.component';
 import { HttpClientModule } from '@angular/common/http';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
   imports: [
     BrowserModule,
     HttpClientModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

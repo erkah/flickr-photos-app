@@ -5,13 +5,13 @@
     </div>
   
     <div class="row">
-      <div class="col-sm-12 col-md-6 col-lg-4 p-3" *ngFor="let image of images">
-        <div class="card">
-          <a href="{{image.url}}_b.jpg">
-            <img src="{{image.url}}_m.jpg" title="{{image.title}}">
-          </a>
-        </div>
-      </div>
+      <mat-grid-list cols="3" rowHeight="2:1">
+        <mat-grid-tile *ngFor="let image of images">
+            <a href="{{image.url}}_b.jpg">
+                <img src="{{image.url}}_m.jpg" title="{{image.title}}">
+              </a>
+        </mat-grid-tile>
+      </mat-grid-list>
     </div>
     <div
       class="search-results"
