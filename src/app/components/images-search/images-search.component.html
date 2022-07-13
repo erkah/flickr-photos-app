@@ -1,0 +1,37 @@
+<div class="container">
+
+    <div class="full-screen-view-container">
+        <p>testtttt</p>
+        <!-- <app-fullscreen-image
+          *ngIf="currentPhoto"
+          [photo]="currentPhoto"
+          class="full-photo"
+          data-testid="full-photo"
+        ></app-fullscreen-image> -->
+    </div>
+    <div class="defaulf-view-container">
+        <div class="search-title">
+          <img src="https://combo.staticflickr.com/pw/favicon.ico">
+          <h1 class="text-center">flickr photos</h1>
+        </div>
+        <div class="form-group">
+          <input type="search" class="form-control" (keyup)="search($event)" placeholder="Search images">
+        </div>
+        <div class="images-container">
+          <mat-grid-list cols="3" rowHeight="2:1">
+            <mat-grid-tile *ngFor="let image of images">
+                <a href="{{image.url}}_b.jpg">
+                    <img src="{{image.url}}_m.jpg" title="{{image.title}}">
+                </a>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </div>
+        <div
+          class="search-results"
+          infiniteScroll
+          [infiniteScrollDistance]="2"
+          [infiniteScrollThrottle]="50"
+          (scrolled)="onScroll()">
+        </div>
+    </div>
+  </div>

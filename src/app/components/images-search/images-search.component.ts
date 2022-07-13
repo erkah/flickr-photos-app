@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { tap } from 'rxjs/operators';
-import { FlickrService } from '../services/flickr.service';
+import { FlickrService } from '../../services/flickr.service';
 
 @Component({
   selector: 'app-images-search',
