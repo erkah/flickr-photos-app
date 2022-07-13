@@ -9,6 +9,7 @@ export interface FlickrPhoto {
   secret: string;
   server: string;
   title: string;
+  owner: string
 }
 
 export interface FlickrOutput {
@@ -45,7 +46,8 @@ export class FlickrService {
         res.photos.photo.forEach((photo: FlickrPhoto) => {
           const photoObj = {
             url: `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_n.jpg`,
-            title: photo.title
+            title: photo.title,
+            owner: photo.owner
           };
           urlArr.push(photoObj);
         })

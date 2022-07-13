@@ -1,15 +1,18 @@
 <div class="container">
-    <h1 class="text-center">Flickr</h1>
+    <div class="search-title">
+        <img src="https://combo.staticflickr.com/pw/favicon.ico">
+        <h1 class="text-center">flickr photos</h1>
+    </div>
     <div class="form-group">
       <input type="search" class="form-control" (keyup)="search($event)" placeholder="Search images">
     </div>
   
-    <div class="row">
+    <div class="images-container">
       <mat-grid-list cols="3" rowHeight="2:1">
         <mat-grid-tile *ngFor="let image of images">
             <a href="{{image.url}}_b.jpg">
                 <img src="{{image.url}}_m.jpg" title="{{image.title}}">
-              </a>
+            </a>
         </mat-grid-tile>
       </mat-grid-list>
     </div>

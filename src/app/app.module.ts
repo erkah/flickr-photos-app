@@ -5,7 +5,9 @@ import { ImagesSearchComponent } from './images-search/images-search.component';
 import { HttpClientModule } from '@angular/common/http';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { MatGridListModule } from '@angular/material/grid-list';
-
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
     BrowserModule,
     HttpClientModule,
     InfiniteScrollModule,
-    MatGridListModule
+    MatGridListModule,
+    MatIconModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]
