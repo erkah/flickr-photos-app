@@ -12,7 +12,8 @@ import { FullscreenImageComponent } from './components/fullscreen-image/fullscre
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxMasonryModule } from 'ngx-masonry';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
     MatFormFieldModule,
     MatDialogModule,
     NgxMasonryModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    ScrollingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
