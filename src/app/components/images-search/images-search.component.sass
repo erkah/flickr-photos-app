@@ -2,6 +2,7 @@
     display: flex
     flex-direction: row
     justify-content: center
+    align-items: center
 
     h1.text-center 
         display: flex
@@ -9,6 +10,10 @@
         justify-content: center
         font-size: 53px
         color: darkgrey
+    .icon
+        margin-right: 10px
+        width: 50px
+        height: 50px
 
 .form-group
     margin:0 auto
@@ -17,10 +22,10 @@
     border:1px solid #dcdcdc
 
 .form-group:hover
-    box-shadow: 1px 1px 8px 1px #dcdcdc
+    box-shadow: 1px 4px 8px 1px #dcdcdc
 
 .form-group:focus-within
-    box-shadow: 1px 1px 8px 1px #dcdcdc
+    box-shadow: 1px 4px 8px 1px #dcdcdc
     outline:none
 
 .form-control
@@ -34,3 +39,6 @@
 
 .images-container
     margin-top: 5%
+
+    .masonry-options
+        margin-left: 6%

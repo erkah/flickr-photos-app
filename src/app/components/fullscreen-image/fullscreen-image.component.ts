@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Inject} from '@angular/core';
 import { FlickrPhoto } from '../../models/flickrPhoto';
 import { FlickrOutput } from '../../models/flickrOutput';
+import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog'
 
 @Component({
   selector: 'app-fullscreen-image',
@@ -9,11 +10,19 @@ import { FlickrOutput } from '../../models/flickrOutput';
 })
 export class FullscreenImageComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) private data: any,
+    public dialogRef: MatDialogRef<FullscreenImageComponent>) { 
+    
+  }
 
   ngOnInit(): void {
   }
 
   @Input() public photo: FlickrPhoto | null = null;
+
+  onClose(): void {
+    this.dialogRef.close(true);
+  }
 
 }

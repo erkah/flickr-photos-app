@@ -1,23 +1,8 @@
-<ng-container *ngIf="photo">
-    <h2 data-testid="full-photo-title">test</h2>
-  
-    <p>
-      <!-- <img src="{{ photo.url }}" alt="{{ photo.title }}" data-testid="full-photo-image" /> -->
-    </p>
-  
-    <p data-testid="full-photo-ownername">test</p>
-  
-    <p data-testid="full-photo-datetaken">test</p>
-  
-    <p data-testid="full-photo-tags">test</p>
-  
-    <p>
-      <a
-        href="https://www.flickr.com/photos/{{ photo.owner }}/{{ photo.id }}"
-        data-testid="full-photo-link"
-        target="_top"
-      >
-        test
-      </a>
-    </p>
-  </ng-container>
+<mat-dialog-content>
+  <p>
+    test
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

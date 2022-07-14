@@ -1,30 +1,36 @@
 <div class="container">
 
     <div class="full-screen-view-container">
-        <p>testtttt</p>
-        <!-- <app-fullscreen-image
-          *ngIf="currentPhoto"
-          [photo]="currentPhoto"
-          class="full-photo"
-          data-testid="full-photo"
-        ></app-fullscreen-image> -->
+      <!-- <ng-image-fullscreen-view
+      [images]="imageObject"
+      [imageIndex]="currentIndex"
+      [show]="showFlag"
+      (close)="closeEventHandler()">
+    </ng-image-fullscreen-view> -->
+
     </div>
     <div class="defaulf-view-container">
         <div class="search-title">
-          <img src="https://combo.staticflickr.com/pw/favicon.ico">
+          <img class="icon" src="../../../assets/Flickr.svg">
           <h1 class="text-center">flickr photos</h1>
         </div>
+        <!-- <button mat-raised-button (click)="openDialog()">Open dialog without animation</button> -->
+
         <div class="form-group">
           <input type="search" class="form-control" (keyup)="search($event)" placeholder="Search images">
         </div>
         <div class="images-container">
-          <mat-grid-list cols="3" rowHeight="2:1">
-            <mat-grid-tile *ngFor="let image of images">
-                <a href="{{image.url}}_b.jpg">
+          <ngx-masonry class="masonry-options" [options]="masonryOptions" style="width: 90vw;" [ordered]="true">
+            <div ngxMasonryItem class="masonry-item" *ngFor="let image of images" style="width: 30%;">
+              <img src="{{image.url}}_m.jpg" title="{{image.title}}">
+            </div>
+          </ngx-masonry>
+          <!-- <mat-grid-list cols="3" rowHeight="2:1">
+            <mat-grid-tile *ngFor="let image of images; let i = index">
+                  href="https://www.flickr.com/photos/{{ image.owner }}/{{ image.id }}"
                     <img src="{{image.url}}_m.jpg" title="{{image.title}}">
-                </a>
             </mat-grid-tile>
-          </mat-grid-list>
+          </mat-grid-list> -->
         </div>
         <div
           class="search-results"
@@ -33,5 +39,6 @@
           [infiniteScrollThrottle]="50"
           (scrolled)="onScroll()">
         </div>
+        <mat-spinner></mat-spinner>
     </div>
   </div>

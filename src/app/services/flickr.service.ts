@@ -30,8 +30,9 @@ export class FlickrService {
         const urlArr: any[] = [];
 
         res.photos.photo.forEach((photo: FlickrPhoto) => {
+          console.log("photo------", photo)
           const photoObj = {
-            url: `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_n.jpg`,
+            url: `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_w.jpg`,
             title: photo.title,
             owner: photo.owner
           };
