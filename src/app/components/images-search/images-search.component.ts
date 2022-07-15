@@ -19,7 +19,7 @@ export class ImagesSearchComponent implements OnInit {
   keyword: string = '';
   timeout: any = null;
   loading: boolean =  false;
-  @ViewChild(CdkVirtualScrollViewport) viewPort!: CdkVirtualScrollViewport;
+  // @ViewChild(CdkVirtualScrollViewport) viewPort!: CdkVirtualScrollViewport;
   @ViewChild(NgxMasonryComponent) masonry: NgxMasonryComponent | undefined;
 
   public currentPhoto: FlickrPhoto | null = null;
@@ -31,9 +31,9 @@ export class ImagesSearchComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private flickrService: FlickrService) { 
-      setTimeout(() => {
-        this.viewPort.scrollToIndex(4999, 'auto');
-      },2000);
+      // setTimeout(() => {
+      //   this.viewPort.scrollToIndex(4999, 'auto');
+      // },2000);
     }
 
   ngOnInit(): void {
@@ -53,7 +53,6 @@ export class ImagesSearchComponent implements OnInit {
         }
       }
     }, 500);
-    
   }
 
   onScroll() {
@@ -64,14 +63,13 @@ export class ImagesSearchComponent implements OnInit {
     }
   }
 
-  openDialog(): void {
+  openDialog(currentPhoto: any): void {
     this.dialog.open(FullscreenImageComponent, {
+      width: '1104px',
+      height: '778px',
+      panelClass: 'full-screen-modal',
       data: {
-        maxWidth: '100vw',
-        maxHeight: '100vh',
-        height: '100%',
-        width: '100%',
-        panelClass: 'full-screen-modal'
+        currentPhoto: currentPhoto
       }
     });
   }
