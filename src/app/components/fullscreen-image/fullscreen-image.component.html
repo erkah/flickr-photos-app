@@ -2,17 +2,14 @@
   <mat-dialog-content>
     <mat-icon mat-dialog-close [attr.automation-id]="'close-button'" class="mat-dialog-close">close</mat-icon>
   </mat-dialog-content>
-
-  <mat-dialog-actions>
-    <div class="fullscreen-image-info">
-      <p class="title">
-        Title: 
-        <span>{{data.currentPhoto.title}}</span>
-      </p>
-      <p class="owner">
-        Owner: 
-        <span>{{data.currentPhoto.owner}}</span>
-      </p>
-    </div>
-  </mat-dialog-actions>
+</div>
+<div class="fullscreen-image-info">
+  <p class="title-container">
+    <span class="title">Title: </span>
+    <span>{{data.currentPhoto.title}}</span>
+  </p>
+  <p class="owner-container">
+    <span class="owner">Owner: </span>
+    <span>{{data.currentPhoto.owner}}</span>
+  </p>
 </div>
