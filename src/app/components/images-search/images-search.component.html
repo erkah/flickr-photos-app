@@ -3,6 +3,7 @@
     <div class="search-title">
       <img class="icon" src="../../../assets/Flickr.svg" />
       <h1 class="text-center">flickr photos</h1>
+      <mat-slide-toggle [checked] = "isChecked" (change)="toggle($event)" color="primary" class="view-mode">{{isChecked ? 'Infinite Scroll' : 'CDK scroll'}}</mat-slide-toggle>
     </div>
 
     <div class="form-group">
@@ -14,50 +15,22 @@
       />
     </div>
 
-    <images-grid *ngIf="keyword" [keyword]="keyword"></images-grid>
-    <!-- 
-    <cdk-virtual-scroll-viewport
-      itemSize="50"
-      class="example-viewport"
-      appendOnly
-      #scrollViewport
-    >
-      <div
-        ngxMasonryItem
-        class="masonry-item"
-        *ngFor="let image of images"
-        style="width: 30%"
-      >
-        <button class="image" mat-raised-button (click)="openDialog(image)">
-          <img src="{{ image.url }}_m.jpg" title="{{ image.title }}" />
-        </button>
-      </div>
-    </cdk-virtual-scroll-viewport> -->
-    <!-- <div class="images-container">
-      <ngx-masonry
-        class="masonry-options"
-        [options]="masonryOptions"
-        style="width: 90vw"
-        [ordered]="true"
-      >
-        <div ngxMasonryItem class="masonry-item" *ngFor="let image of images">
-          <button class="image" mat-raised-button (click)="openDialog(image)">
-            <img
-              width="250px"
-              src="{{ image.thumbnail }}"
-              title="{{ image.title }}"
-            />
-          </button>
-        </div>
-      </ngx-masonry>
-    </div>
-    <mat-spinner class="loading" *ngIf="loading"></mat-spinner>
-    <div
-      class="search-results"
-      infiniteScroll
-      [infiniteScrollDistance]="2"
-      [infiniteScrollThrottle]="50"
-      (scrolled)="onScroll()"
-    ></div> -->
+    <images-infinite-scroll 
+      *ngIf="keyword && isChecked" 
+      [keyword]="keyword" 
+      [images]="images" 
+      [loading]="loading" 
+      (fetchMore)="fetchMore()"
+      (openDialog)="openDialog($event)">
+    </images-infinite-scroll>
+    <images-cdk-scroll 
+      *ngIf="keyword && !isChecked" 
+      [keyword]="keyword"  
+      [images]="images" 
+      [loading]="loading" 
+      (fetchMore)="fetchMore()"
+      (openDialog)="openDialog($event)">
+    </images-cdk-scroll>
+  
   </div>
 </div>

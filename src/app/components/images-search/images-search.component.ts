@@ -1,16 +1,12 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit,ViewChild} from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { FlickrPhoto } from 'src/app/models/flickrPhoto';
 import { FlickrService } from '../../services/flickr.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FullscreenImageComponent } from '../fullscreen-image/fullscreen-image.component';
-import { NgxMasonryComponent, NgxMasonryOptions } from 'ngx-masonry';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { SearchedImages } from 'src/app/models/searchedImages';
 
 @Component({
   selector: 'app-images-search',
@@ -19,21 +15,27 @@ import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
   changeDetection: ChangeDetectionStrategy.Default,
 })
 export class ImagesSearchComponent implements OnInit {
-  images: any[] = [];
+
+  images: SearchedImages[] = [];
   keyword: string = '';
   timeout: any = null;
   loading: boolean = false;
-  @ViewChild(CdkVirtualScrollViewport) viewPort!: CdkVirtualScrollViewport;
-  @ViewChild(NgxMasonryComponent) masonry: NgxMasonryComponent | undefined;
-
   public currentPhoto: FlickrPhoto | null = null;
-  public masonryOptions: NgxMasonryOptions = {
-    gutter: 20,
-  };
+  isChecked: boolean = true;
+  viewMode: string = '';
 
-  constructor(public dialog: MatDialog, private flickrService: FlickrService) {}
+  @ViewChild(CdkVirtualScrollViewport) viewPort!: CdkVirtualScrollViewport;
+
+  constructor(
+    public dialog: MatDialog, 
+    private flickrService: FlickrService
+  ) {}
 
   ngOnInit(): void {}
+
+  toggle(e: MatSlideToggleChange) {
+    this.isChecked = e.source.checked;
+  }
 
   search(event: any) {
     clearTimeout(this.timeout);
@@ -53,7 +55,7 @@ export class ImagesSearchComponent implements OnInit {
     }, 1000);
   }
 
-  onScroll() {
+  fetchMore() {
     if (this.keyword && this.keyword.length > 0) {
       const $this = this;
       this.loading = true;
@@ -67,7 +69,7 @@ export class ImagesSearchComponent implements OnInit {
     }
   }
 
-  openDialog(currentPhoto: any): void {
+  openDialog(currentPhoto: SearchedImages): void {
     this.dialog.open(FullscreenImageComponent, {
       width: '1104px',
       height: '778px',

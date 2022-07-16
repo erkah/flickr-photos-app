@@ -1,0 +1,26 @@
+<div class="images-container">
+    <ngx-masonry
+    class="masonry-options"
+    [options]="masonryOptions"
+    style="width: 90vw"
+    [ordered]="true"
+    >
+    <div ngxMasonryItem class="masonry-item" *ngFor="let image of images">
+        <button class="image" mat-raised-button (click)="opendialog(image)">
+        <img
+            width="250px"
+            src="{{ image.thumbnail }}"
+            title="{{ image.title }}"
+        />
+        </button>
+    </div>
+    </ngx-masonry>
+</div>
+<mat-spinner class="loading" *ngIf="loading" [diameter]="70"></mat-spinner>
+<div
+    class="search-results"
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="50"
+    (scrolled)="onScroll()"
+></div>

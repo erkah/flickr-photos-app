@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ImagesGridComponent } from './images-grid.component';
+import { ImagesCdkScrollComponent } from './images-cdk-scroll.component';
 
-describe('ImagesGridComponent', () => {
-  let component: ImagesGridComponent;
-  let fixture: ComponentFixture<ImagesGridComponent>;
+describe('ImagesCdkScrollComponent', () => {
+  let component: ImagesCdkScrollComponent;
+  let fixture: ComponentFixture<ImagesCdkScrollComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ImagesGridComponent],
+      declarations: [ImagesCdkScrollComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ImagesGridComponent);
+    fixture = TestBed.createComponent(ImagesCdkScrollComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

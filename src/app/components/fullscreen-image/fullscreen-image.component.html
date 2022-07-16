@@ -2,14 +2,13 @@
   class="fullscreen-image"
   [style.backgroundImage]="'url(' + data.currentPhoto.url + ')'"
 >
-  <mat-spinner class="loader" *ngIf="!imageLoaded"></mat-spinner>
   <mat-dialog-content>
     <mat-icon
       mat-dialog-close
       [attr.automation-id]="'close-button'"
       class="mat-dialog-close"
-      >close</mat-icon
-    >
+      >close</mat-icon>
+    <mat-spinner class="loader" *ngIf="!imageLoaded" [diameter]="70"></mat-spinner>
   </mat-dialog-content>
 </div>
 <div class="fullscreen-image-info">

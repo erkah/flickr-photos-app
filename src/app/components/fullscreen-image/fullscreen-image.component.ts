@@ -18,7 +18,6 @@ export class FullscreenImageComponent implements OnInit {
 
   ngOnInit(): void {
     const img = new Image();
-    console.log(this.data);
     img.src = this.data.currentPhoto.url;
     img.onload = () => {
       this.imageLoaded = true;
