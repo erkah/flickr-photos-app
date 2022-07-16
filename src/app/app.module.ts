@@ -15,7 +15,6 @@ import { NgxMasonryModule } from 'ngx-masonry';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ImagesGridComponent } from './components/images-grid/images-grid.component';
-import { ImagesGridSampleComponent } from './components/images-grid-sample/images-grid-sample.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +22,6 @@ import { ImagesGridSampleComponent } from './components/images-grid-sample/image
     ImagesSearchComponent,
     FullscreenImageComponent,
     ImagesGridComponent,
-    ImagesGridSampleComponent,
   ],
   imports: [
     BrowserModule,

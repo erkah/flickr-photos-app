@@ -1,9 +1,12 @@
 <div class="grid-component">
   <ng-container>
-    <cdk-virtual-scroll-viewport #scroller itemSize="100">
+    <cdk-virtual-scroll-viewport #scroller itemSize="300">
       <div class="item" *cdkVirtualFor="let image of images">
-        {{ image }}
+        <button class="image" mat-raised-button (click)="openDialog(image)">
+          <img height="300" src="{{ image.url }}" title="{{ image.title }}" />
+        </button>
       </div>
+      <mat-spinner class="loading" *ngIf="loading"></mat-spinner>
     </cdk-virtual-scroll-viewport>
   </ng-container>
 </div>

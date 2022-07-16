@@ -5,15 +5,9 @@ import { AppRoutingModule } from '../../app-routing.module';
 import { AppComponent } from '../../app.component';
 import { ImagesSearchComponent } from './images-search.component';
 import { ImagesGridComponent } from '../images-grid/images-grid.component';
-import { ImagesGridSampleComponent } from '../images-grid-sample/images-grid-sample.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ImagesSearchComponent,
-    ImagesGridComponent,
-    ImagesGridSampleComponent,
-  ],
+  declarations: [AppComponent, ImagesSearchComponent, ImagesGridComponent],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],

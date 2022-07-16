@@ -8,9 +8,8 @@ describe('ImagesSearchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ImagesSearchComponent ]
-    })
-    .compileComponents();
+      declarations: [ImagesSearchComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

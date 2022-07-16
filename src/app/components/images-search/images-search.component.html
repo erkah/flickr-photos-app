@@ -4,7 +4,6 @@
       <img class="icon" src="../../../assets/Flickr.svg" />
       <h1 class="text-center">flickr photos</h1>
     </div>
-    <!-- <button mat-raised-button (click)="openDialog()">Open dialog without animation</button> -->
 
     <div class="form-group">
       <input
@@ -15,9 +14,7 @@
       />
     </div>
 
-    <!-- <app-images-grid-sample></app-images-grid-sample>
-
-    <images-grid></images-grid> -->
+    <images-grid *ngIf="keyword" [keyword]="keyword"></images-grid>
     <!-- 
     <cdk-virtual-scroll-viewport
       itemSize="50"
@@ -36,7 +33,7 @@
         </button>
       </div>
     </cdk-virtual-scroll-viewport> -->
-    <div class="images-container">
+    <!-- <div class="images-container">
       <ngx-masonry
         class="masonry-options"
         [options]="masonryOptions"
@@ -61,6 +58,6 @@
       [infiniteScrollDistance]="2"
       [infiniteScrollThrottle]="50"
       (scrolled)="onScroll()"
-    ></div>
+    ></div> -->
   </div>
 </div>

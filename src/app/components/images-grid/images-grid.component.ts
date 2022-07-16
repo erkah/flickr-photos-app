@@ -1,6 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  Input,
+  NgZone,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -8,26 +10,33 @@ import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { filter, map, tap, pairwise, throttleTime } from 'rxjs/operators';
 import { FlickrService } from 'src/app/services/flickr.service';
+import { FullscreenImageComponent } from '../fullscreen-image/fullscreen-image.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'images-grid',
   templateUrl: './images-grid.component.html',
   styleUrls: ['./images-grid.component.sass'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ImagesGridComponent implements OnInit {
-  // @ViewChild(CdkVirtualScrollViewport) viewport!: CdkVirtualScrollViewport;
   @ViewChild('scroller') scroller!: CdkVirtualScrollViewport;
 
   infinite = new BehaviorSubject<any[]>([]);
-  images: any[] = ['1', '2', '3', '4', '5', '6', '7', '8'];
+  images: any[] = [];
   loading: boolean = false;
+  @Input() keyword: string = '';
 
-  constructor(private flickrService: FlickrService) {}
+  constructor(
+    private flickrService: FlickrService,
+    private ngZone: NgZone,
+    public dialog: MatDialog
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.fetchMore();
+  }
 
-  ngAfterInit(): void {
+  ngAfterViewInit(): void {
     this.scroller
       .elementScrolled()
       .pipe(
@@ -37,22 +46,33 @@ export class ImagesGridComponent implements OnInit {
         throttleTime(200)
       )
       .subscribe(() => {
-        console.log('herjsjjs');
-        this.flickrService
-          .search_keyword('hello')
-          .pipe(tap((res) => (this.images = this.images.concat(res))))
-          .subscribe();
+        this.ngZone.run(() => {
+          this.fetchMore();
+        });
       });
   }
 
-  // getNewData(currentIndex: number) {
-  //   const end = this.viewport.getRenderedRange().end;
-  //   console.log('here33', end, currentIndex);
-  //   if (currentIndex + 5 >= end) {
-  //     this.images.push('20', '21', '22', '23');
-  //     console.log('do new request');
-  //   }
-  // }
+  fetchMore(): void {
+    this.loading = true;
+    this.flickrService
+      .search_keyword(this.keyword)
+      .pipe(
+        tap((res) => {
+          this.images = this.images.concat(res);
+          this.loading = false;
+        })
+      )
+      .subscribe();
+  }
 
-  fetchMore(): void {}
+  openDialog(currentPhoto: any): void {
+    this.dialog.open(FullscreenImageComponent, {
+      width: '1104px',
+      height: '778px',
+      panelClass: 'full-screen-modal',
+      data: {
+        currentPhoto: currentPhoto,
+      },
+    });
+  }
 }

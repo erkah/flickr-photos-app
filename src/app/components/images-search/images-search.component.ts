@@ -23,7 +23,6 @@ export class ImagesSearchComponent implements OnInit {
   keyword: string = '';
   timeout: any = null;
   loading: boolean = false;
-  items: any[] = [];
   @ViewChild(CdkVirtualScrollViewport) viewPort!: CdkVirtualScrollViewport;
   @ViewChild(NgxMasonryComponent) masonry: NgxMasonryComponent | undefined;
 
@@ -34,9 +33,7 @@ export class ImagesSearchComponent implements OnInit {
 
   constructor(public dialog: MatDialog, private flickrService: FlickrService) {}
 
-  ngOnInit(): void {
-    this.items = Array.from({ length: 100000 }).map((_, i) => `Item #${i}`);
-  }
+  ngOnInit(): void {}
 
   search(event: any) {
     clearTimeout(this.timeout);
