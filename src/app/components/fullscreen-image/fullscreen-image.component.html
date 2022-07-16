@@ -1,15 +1,24 @@
-<div class="fullscreen-image" [style.backgroundImage]="'url('+data.currentPhoto.url+')'">
+<div
+  class="fullscreen-image"
+  [style.backgroundImage]="'url(' + data.currentPhoto.url + ')'"
+>
+  <mat-spinner class="loader" *ngIf="!imageLoaded"></mat-spinner>
   <mat-dialog-content>
-    <mat-icon mat-dialog-close [attr.automation-id]="'close-button'" class="mat-dialog-close">close</mat-icon>
+    <mat-icon
+      mat-dialog-close
+      [attr.automation-id]="'close-button'"
+      class="mat-dialog-close"
+      >close</mat-icon
+    >
   </mat-dialog-content>
 </div>
 <div class="fullscreen-image-info">
   <p class="title-container">
     <span class="title">Title: </span>
-    <span>{{data.currentPhoto.title}}</span>
+    <span>{{ data.currentPhoto.title }}</span>
   </p>
   <p class="owner-container">
     <span class="owner">Owner: </span>
-    <span>{{data.currentPhoto.owner}}</span>
+    <span>{{ data.currentPhoto.owner }}</span>
   </p>
 </div>

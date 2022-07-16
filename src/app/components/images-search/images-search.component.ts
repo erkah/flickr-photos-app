@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { FlickrPhoto } from 'src/app/models/flickrPhoto';
 import { FlickrService } from '../../services/flickr.service';
@@ -11,15 +16,15 @@ import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
   selector: 'app-images-search',
   templateUrl: './images-search.component.html',
   styleUrls: ['./images-search.component.sass'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class ImagesSearchComponent implements OnInit {
-
   images: any[] = [];
   keyword: string = '';
   timeout: any = null;
-  loading: boolean =  false;
-  // @ViewChild(CdkVirtualScrollViewport) viewPort!: CdkVirtualScrollViewport;
+  loading: boolean = false;
+  items: any[] = [];
+  @ViewChild(CdkVirtualScrollViewport) viewPort!: CdkVirtualScrollViewport;
   @ViewChild(NgxMasonryComponent) masonry: NgxMasonryComponent | undefined;
 
   public currentPhoto: FlickrPhoto | null = null;
@@ -27,39 +32,41 @@ export class ImagesSearchComponent implements OnInit {
     gutter: 20,
   };
 
-
-  constructor(
-    public dialog: MatDialog,
-    private flickrService: FlickrService) { 
-      // setTimeout(() => {
-      //   this.viewPort.scrollToIndex(4999, 'auto');
-      // },2000);
-    }
+  constructor(public dialog: MatDialog, private flickrService: FlickrService) {}
 
   ngOnInit(): void {
+    this.items = Array.from({ length: 100000 }).map((_, i) => `Item #${i}`);
   }
 
   search(event: any) {
     clearTimeout(this.timeout);
-    var $this = this;
+    const $this = this;
     this.timeout = setTimeout(function () {
-      if (event.keyCode != 13) {
-        $this.keyword = event.target.value.toLowerCase();
-        if ($this.keyword && $this.keyword.length > 0) {
-          $this.loading = true;
-          $this.flickrService.search_keyword($this.keyword)
-          .pipe(tap(res => $this.images = res))
-          .subscribe()
-        }
+      $this.keyword = event.target.value.toLowerCase();
+      if ($this.keyword && $this.keyword.length >= 3) {
+        $this.loading = true;
+        $this.flickrService
+          .search_keyword($this.keyword)
+          .pipe(tap((res) => {
+            $this.images = res;
+            $this.loading = false;
+          }))
+          .subscribe();
       }
-    }, 500);
+    }, 1000);
   }
 
   onScroll() {
     if (this.keyword && this.keyword.length > 0) {
-      this.flickrService.search_keyword(this.keyword)
-      .pipe(tap(res => this.images = this.images.concat(res)))
-      .subscribe()
+      const $this = this;
+      this.loading = true;
+      this.flickrService
+        .search_keyword(this.keyword)
+        .pipe(tap((res) => {
+          this.images = this.images.concat(res);
+          $this.loading = false;
+        }))
+        .subscribe();
     }
   }
 
@@ -69,9 +76,8 @@ export class ImagesSearchComponent implements OnInit {
       height: '778px',
       panelClass: 'full-screen-modal',
       data: {
-        currentPhoto: currentPhoto
-      }
+        currentPhoto: currentPhoto,
+      },
     });
   }
-
 }

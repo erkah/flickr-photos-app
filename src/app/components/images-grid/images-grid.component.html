@@ -1,0 +1,9 @@
+<div class="grid-component">
+  <ng-container>
+    <cdk-virtual-scroll-viewport #scroller itemSize="100">
+      <div class="item" *cdkVirtualFor="let image of images">
+        {{ image }}
+      </div>
+    </cdk-virtual-scroll-viewport>
+  </ng-container>
+</div>

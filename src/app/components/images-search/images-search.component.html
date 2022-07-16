@@ -1,43 +1,66 @@
 <div class="container">
-
-
-    <div class="defaulf-view-container">
-        <div class="search-title">
-          <img class="icon" src="../../../assets/Flickr.svg">
-          <h1 class="text-center">flickr photos</h1>
-        </div>
-        <!-- <button mat-raised-button (click)="openDialog()">Open dialog without animation</button> -->
-
-        <div class="form-group">
-          <input type="search" class="form-control" (keyup)="search($event)" placeholder="Search images">
-        </div>
-        <div class="images-container" >
-          <!-- <cdk-virtual-scroll-viewport  itemSize="20" class="example-viewport" #scrollViewport> -->
-            <ngx-masonry class="masonry-options" [options]="masonryOptions" style="width: 90vw;" [ordered]="true">
-              <div ngxMasonryItem class="masonry-item" *ngFor="let image of images" style="width: 30%;">
-                <button class="image" mat-raised-button (click)="openDialog(image)">
-                  <img src="{{image.url}}_m.jpg" title="{{image.title}}">
-                </button>
-              </div>
-            </ngx-masonry>
-            <!-- <mat-grid-list cols="3" rowHeight="2:1">
-              <mat-grid-tile *ngFor="let image of images; let i = index">
-                    href="https://www.flickr.com/photos/{{ image.owner }}/{{ image.id }}"
-                      <img src="{{image.url}}_m.jpg" title="{{image.title}}">
-              </mat-grid-tile>
-            </mat-grid-list> -->
-            
-          <!-- </cdk-virtual-scroll-viewport> -->
-          
-        </div>
-       
-        <div
-          class="search-results"
-          infiniteScroll
-          [infiniteScrollDistance]="2"
-          [infiniteScrollThrottle]="50"
-          (scrolled)="onScroll()">
-        </div>
-        <!-- <mat-spinner *ngIf="loading"></mat-spinner> -->
+  <div class="default-view-container">
+    <div class="search-title">
+      <img class="icon" src="../../../assets/Flickr.svg" />
+      <h1 class="text-center">flickr photos</h1>
     </div>
+    <!-- <button mat-raised-button (click)="openDialog()">Open dialog without animation</button> -->
+
+    <div class="form-group">
+      <input
+        type="search"
+        class="form-control"
+        (keyup)="search($event)"
+        placeholder="Search images"
+      />
+    </div>
+
+    <!-- <app-images-grid-sample></app-images-grid-sample>
+
+    <images-grid></images-grid> -->
+    <!-- 
+    <cdk-virtual-scroll-viewport
+      itemSize="50"
+      class="example-viewport"
+      appendOnly
+      #scrollViewport
+    >
+      <div
+        ngxMasonryItem
+        class="masonry-item"
+        *ngFor="let image of images"
+        style="width: 30%"
+      >
+        <button class="image" mat-raised-button (click)="openDialog(image)">
+          <img src="{{ image.url }}_m.jpg" title="{{ image.title }}" />
+        </button>
+      </div>
+    </cdk-virtual-scroll-viewport> -->
+    <div class="images-container">
+      <ngx-masonry
+        class="masonry-options"
+        [options]="masonryOptions"
+        style="width: 90vw"
+        [ordered]="true"
+      >
+        <div ngxMasonryItem class="masonry-item" *ngFor="let image of images">
+          <button class="image" mat-raised-button (click)="openDialog(image)">
+            <img
+              width="250px"
+              src="{{ image.thumbnail }}"
+              title="{{ image.title }}"
+            />
+          </button>
+        </div>
+      </ngx-masonry>
+    </div>
+    <mat-spinner class="loading" *ngIf="loading"></mat-spinner>
+    <div
+      class="search-results"
+      infiniteScroll
+      [infiniteScrollDistance]="2"
+      [infiniteScrollThrottle]="50"
+      (scrolled)="onScroll()"
+    ></div>
   </div>
+</div>

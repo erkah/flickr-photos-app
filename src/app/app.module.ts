@@ -14,12 +14,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxMasonryModule } from 'ngx-masonry';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { ImagesGridComponent } from './components/images-grid/images-grid.component';
+import { ImagesGridSampleComponent } from './components/images-grid-sample/images-grid-sample.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ImagesSearchComponent,
-    FullscreenImageComponent
+    FullscreenImageComponent,
+    ImagesGridComponent,
+    ImagesGridSampleComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,9 +36,9 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     MatDialogModule,
     NgxMasonryModule,
     MatProgressSpinnerModule,
-    ScrollingModule
+    ScrollingModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
