@@ -11,7 +11,7 @@ This two views display is done to showcase both cases considering the performanc
 - Display images in one image per cell view using CDK virtual scroll viewport
 - Open one image in FullScreen mode and display Title and Owner of the image
 
-![] (demo.gif)
+![](demo.gif)
 
 # Structure of the code
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.3.
