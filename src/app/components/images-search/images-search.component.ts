@@ -22,7 +22,7 @@ export class ImagesSearchComponent implements OnInit {
   timeout: any = null;
   loading: boolean = false;
   public currentPhoto: FlickrPhoto | null = null;
-  isChecked: boolean = true;
+  isChecked: boolean = false;
   viewMode: string = '';
 
   @ViewChild(CdkVirtualScrollViewport) viewPort!: CdkVirtualScrollViewport;

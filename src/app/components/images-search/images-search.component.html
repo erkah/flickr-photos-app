@@ -3,7 +3,7 @@
     <div class="search-title">
       <img class="icon" src="../../../assets/Flickr.svg" />
       <h1 class="text-center">flickr photos</h1>
-      <mat-slide-toggle [checked] = "isChecked" (change)="toggle($event)" color="primary" class="view-mode">{{isChecked ? 'Infinite Scroll' : 'CDK scroll'}}</mat-slide-toggle>
+      <mat-slide-toggle (change)="toggle($event)" color="primary" class="view-mode">Virtual Scroll</mat-slide-toggle>
     </div>
 
     <div class="form-group">
@@ -16,7 +16,7 @@
     </div>
 
     <images-infinite-scroll 
-      *ngIf="keyword && isChecked" 
+      *ngIf="keyword && !isChecked" 
       [keyword]="keyword" 
       [images]="images" 
       [loading]="loading" 
@@ -24,7 +24,7 @@
       (openDialog)="openDialog($event)">
     </images-infinite-scroll>
     <images-cdk-scroll 
-      *ngIf="keyword && !isChecked" 
+      *ngIf="keyword && isChecked" 
       [keyword]="keyword"  
       [images]="images" 
       [loading]="loading" 
