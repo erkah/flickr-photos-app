@@ -1,5 +1,9 @@
 # FlickrPhotosApp
 This is an Angular application implementing a photo search by using the Flickr API.
+This application is developed by using two methods of search results display. You can switch from one method to the other by using the toggle button above the search input filed. 
+In the first view images are displayed in a grid view, using the Infinite scroll and Masonry modules. 
+In the second view images are displayed in one cell per image view, using a more performant scroll module called cdk virtual scroll viewport.
+This two views display is done to showcase both cases considering the performance. 
 
 ## Main functionalities of the project
 - Search images by keyword
@@ -7,7 +11,7 @@ This is an Angular application implementing a photo search by using the Flickr A
 - Display images in one image per cell view using CDK virtual scroll viewport
 - Open one image in FullScreen mode and display Title and Owner of the image
 
-![alt text] (demo.mp4)
+![] (demo.gif)
 
 # Structure of the code
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.3.
