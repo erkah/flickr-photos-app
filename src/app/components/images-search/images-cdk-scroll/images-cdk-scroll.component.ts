@@ -1,9 +1,10 @@
 import { Component, Input, NgZone, OnInit, Output, ViewChild } from '@angular/core';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { filter, map, pairwise, throttleTime } from 'rxjs/operators';
+import { filter, map, pairwise, takeUntil, throttleTime } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { SearchedImages } from 'src/app/models/searchedImages';
 import { EventEmitter } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'images-cdk-scroll',
@@ -18,14 +19,17 @@ export class ImagesCdkScrollComponent implements OnInit {
   @Output() fetchMore: EventEmitter<any> = new EventEmitter();
   @Output() openDialog: EventEmitter<any> = new EventEmitter();
 
+  private _unsubscribeAll: Subject<any>;
+
   constructor(
     private ngZone: NgZone,
     public dialog: MatDialog
-  ) {}
-
-  ngOnInit(): void {
-    this.onScroll();
+  ) {
+    // Set the private defaults
+    this._unsubscribeAll = new Subject();
   }
+
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     this.scroller
@@ -34,7 +38,8 @@ export class ImagesCdkScrollComponent implements OnInit {
         map(() => this.scroller.measureScrollOffset('bottom')),
         pairwise(),
         filter(([y1, y2]) => y2 < y1 && y2 < 140),
-        throttleTime(200)
+        throttleTime(200),
+        takeUntil(this._unsubscribeAll)
       )
       .subscribe(() => {
         this.ngZone.run(() => {
@@ -43,12 +48,24 @@ export class ImagesCdkScrollComponent implements OnInit {
       });
   }
 
+  // loads images
   onScroll() {
     this.fetchMore.emit();
   }
 
+  // opens full screen mode image
   opendialog(currentImage: SearchedImages) {
     this.openDialog.emit(currentImage);
   }
+
+  /**
+   * On destroy
+   */
+   ngOnDestroy(): void
+   {
+       // Unsubscribe from all subscriptions
+       this._unsubscribeAll.next();
+       this._unsubscribeAll.complete();
+   }
 
 }

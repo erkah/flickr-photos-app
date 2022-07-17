@@ -13,10 +13,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxMasonryModule } from 'ngx-masonry';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { ImagesCdkScrollComponent } from './components/images-cdk-scroll/images-cdk-scroll.component';
+import { ImagesCdkScrollComponent } from './components/images-search/images-cdk-scroll/images-cdk-scroll.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormsModule } from '@angular/forms';
-import { ImagesInfiniteScrollComponent } from './components/images-infinite-scroll/images-infinite-scroll.component';
+import { ImagesInfiniteScrollComponent } from './components/images-search/images-infinite-scroll/images-infinite-scroll.component';
 
 @NgModule({
   declarations: [

@@ -14,6 +14,10 @@ export class FlickrService {
 
   constructor(private http: HttpClient) {}
 
+  /**
+   * Retrives all images from Flickr API based on the keyword added
+   * @param {string} keyword
+   */
   search_keyword(keyword: string) {
     if (this.prevKeyword === keyword) {
       this.currPage++;

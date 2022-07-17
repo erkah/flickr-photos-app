@@ -27,16 +27,19 @@ export class ImagesInfiniteScrollComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+  
   }
 
   ngAfterViewInit(): void {
     this.onScroll();
   }
 
+  // loads images
   onScroll() {
     this.fetchMore.emit();
   }
 
+  // opens full screen mode image
   opendialog(currentImage: SearchedImages) {
     this.openDialog.emit(currentImage);
   }
